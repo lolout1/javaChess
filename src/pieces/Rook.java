@@ -13,7 +13,13 @@ public class Rook extends Piece {
     public boolean canMove(Board board, Position to) {
         int rowDiff = Math.abs(to.getRow() - this.getPosition().getRow());
         int colDiff = Math.abs(to.getColumn() - this.getPosition().getColumn());
-        return rowDiff == 0 || colDiff == 0;
+
+        // Rook moves only in straight lines (either row or column changes, but not both)
+        if (rowDiff == 0 || colDiff == 0) {
+            return board.isPathClear(this.getPosition(), to);
+        }
+
+        return false;
     }
 
     @Override

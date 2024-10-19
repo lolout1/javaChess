@@ -13,7 +13,13 @@ public class Queen extends Piece {
     public boolean canMove(Board board, Position to) {
         int rowDiff = Math.abs(to.getRow() - this.getPosition().getRow());
         int colDiff = Math.abs(to.getColumn() - this.getPosition().getColumn());
-        return rowDiff == colDiff || rowDiff == 0 || colDiff == 0;
+
+        // Queen moves like a Rook or Bishop (straight or diagonal)
+        if (rowDiff == colDiff || rowDiff == 0 || colDiff == 0) {
+            return board.isPathClear(this.getPosition(), to);
+        }
+
+        return false;
     }
 
     @Override
