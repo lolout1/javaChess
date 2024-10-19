@@ -2,14 +2,10 @@ package pieces;
 
 import utils.Position;
 import board.Board;
-import java.util.List;
 
-/**
- * Abstract class representing a chess piece.
- */
 public abstract class Piece {
-    protected String color;
-    protected Position position;
+    private String color;
+    private Position position;
 
     public Piece(String color, Position position) {
         this.color = color;
@@ -28,12 +24,6 @@ public abstract class Piece {
         this.position = position;
     }
 
-    public abstract List<Position> possibleMoves(Board board);
-
-    public void move(Position newPosition) {
-        this.position = newPosition;
-    }
-
-    public abstract String toString();
+    public abstract boolean canMove(Board board, Position to);
 }
 

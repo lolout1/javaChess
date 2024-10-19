@@ -2,12 +2,7 @@ package pieces;
 
 import utils.Position;
 import board.Board;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Class representing a Rook piece.
- */
 public class Rook extends Piece {
 
     public Rook(String color, Position position) {
@@ -15,13 +10,15 @@ public class Rook extends Piece {
     }
 
     @Override
-    public List<Position> possibleMoves(Board board) {
-        return new ArrayList<>();
+    public boolean canMove(Board board, Position to) {
+        int rowDiff = Math.abs(to.getRow() - this.getPosition().getRow());
+        int colDiff = Math.abs(to.getColumn() - this.getPosition().getColumn());
+        return rowDiff == 0 || colDiff == 0;
     }
 
     @Override
     public String toString() {
-        return color.equals("white") ? "wR" : "bR";
+        return getColor().equals("white") ? "wR" : "bR";
     }
 }
 

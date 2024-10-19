@@ -44,10 +44,32 @@ public class Board {
 
     public boolean movePiece(Position from, Position to) {
         Piece piece = getPiece(from);
-        if (piece == null) return false;
+        
+        if (piece == null) {
+            System.out.println("There is no piece on the source square.");
+            return false;
+        }
+
+        if (!piece.canMove(this, to)) {
+            System.out.println("Invalid move for " + piece.getClass().getSimpleName() + ".");
+            return false;
+        }
+
+        Piece targetPiece = getPiece(to);
+        
+        if (targetPiece != null) {
+            if (piece.getColor().equals(targetPiece.getColor())) {
+                System.out.println("Invalid move: You cannot move to a square occupied by your own piece.");
+                return false;
+            } else {
+                System.out.println("Capturing the opponent's piece on " + to);
+            }
+        }
+        
         squares[to.getRow()][to.getColumn()] = piece;
         squares[from.getRow()][from.getColumn()] = null;
         piece.setPosition(to);
+        
         return true;
     }
 
@@ -57,22 +79,19 @@ public class Board {
         System.out.println();
         for (int row = 0; row < 8; row++) {
             int displayRow = 8 - row;
-            System.out.println(horizontalLine);  // Print the top horizontal line
-            System.out.print(" " + displayRow + " |");  // Row number with vertical line
+            System.out.println(horizontalLine);
+            System.out.print(" " + displayRow + " |");
             
             for (int col = 0; col < 8; col++) {
                 Piece piece = squares[row][col];
-                // Format each square, piece or empty
                 String square = (piece != null) ? String.format(" %-3s ", piece.toString()) : "     ";
                 System.out.print(square + "|");
             }
             System.out.println();
         }
-        // Print the last horizontal line
         System.out.println(horizontalLine);
 
-        // Print column labels
-        System.out.print("    ");
+        System.out.print("   ");
         for (char c = 'A'; c <= 'H'; c++) {
             System.out.print("  " + c + "   ");
         }
