@@ -1,14 +1,13 @@
 package main;
 
-import game.Game;
+import gui.ChessGUI;
+import javax.swing.SwingUtilities;
 
-/**
- * Main class to start the chess game.
- */
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
-        game.start();
+        SwingUtilities.invokeLater(() -> {
+            ChessGUI gui = new ChessGUI();
+            gui.setVisible(true);
+        });
     }
 }
-
