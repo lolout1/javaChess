@@ -43,7 +43,7 @@ public class Board {
 
     public boolean movePiece(Position from, Position to) {
         Piece piece = getPiece(from);
-        
+    
         if (piece == null) {
             System.out.println("There is no piece on the source square.");
             return false;
@@ -71,7 +71,10 @@ public class Board {
         
         return true;
     }
-
+    public void placePiece(Piece piece, Position pos) {
+        squares[pos.getRow()][pos.getColumn()] = piece;
+        piece.setPosition(pos);
+}
     // Helper method to check if a path is clear (no pieces in the way)
     public boolean isPathClear(Position from, Position to) {
         int rowDiff = to.getRow() - from.getRow();
