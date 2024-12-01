@@ -28,8 +28,10 @@ A fully functional GUI-based chess game implemented in Java, featuring complete 
 - [x] Checkmate detection
 - [x] Turn-based gameplay
 - [x] Game state visualization
-- [ ] Save/Load game functionality
-- [ ] Move history
+- [x] Save/Load game functionality
+- [x] Move history
+- [x] Undo moves and move logger
+- [x] User customizable board size and board color. 
 <!-- Add or modify features as implemented -->
 
 ## How to Run
