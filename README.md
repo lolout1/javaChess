@@ -12,11 +12,11 @@
 A fully functional GUI-based chess game implemented in Java, featuring complete chess rules implementation including move validation, piece capture, check and checkmate detection.
 
 ## Preview
-![Chess Game Interface](path_to_screenshot.png)
+![Chess Game Interface](GUIgamestate.png)
 <!-- Add your game interface screenshot here -->
 
 ## Class Diagram
-![Class Diagram](path_to_class_diagram.png)
+![Class Diagram](plantuml/Chess_Game_Class_Diagram.png)
 <!-- Add your UML class diagram here -->
 
 ## Features

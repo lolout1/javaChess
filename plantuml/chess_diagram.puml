@@ -1,0 +1,186 @@
+@startuml Chess_Game_Class_Diagram
+
+' Style configurations
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor white
+skinparam roundcorner 5
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+skinparam class {
+    BackgroundColor lightblue
+    ArrowColor black
+    BorderColor navy
+    AttributeFontColor black
+    AttributeFontSize 12
+    FontSize 14
+}
+
+skinparam note {
+    BackgroundColor lightyellow
+    BorderColor gray
+}
+
+' Title and header
+title Java Chess Game - Detailed Class Diagram
+header Created with PlantUML
+footer Chess Game Architecture - Page %page% of %lastpage%
+
+' Package utils
+package "utils" {
+    class Position <<(V,orchid) Value Object>> {
+        - row: int
+        - column: int
+        + Position(row: int, column: int)
+        + getRow(): int
+        + getColumn(): int
+        + equals(Object): boolean
+        + hashCode(): int
+        + toString(): String
+    }
+    note right of Position
+        Represents a position on the chess board
+        using zero-based row and column indices
+    end note
+}
+
+' Package pieces
+package "pieces" {
+    abstract class Piece {
+        # {static} final BOARD_SIZE: int
+        - color: String
+        - position: Position
+        + Piece(color: String, position: Position)
+        + getColor(): String
+        + getPosition(): Position
+        + setPosition(position: Position): void
+        + {abstract} canMove(board: Board, to: Position): boolean
+        # isValidPosition(position: Position): boolean
+        # isDiagonalMove(from: Position, to: Position): boolean
+        # isStraightMove(from: Position, to: Position): boolean
+        # isPathClear(board: Board, from: Position, to: Position): boolean
+    }
+
+    class King {
+        + King(color: String, position: Position)
+        + canMove(board: Board, to: Position): boolean
+        - isValidKingMove(from: Position, to: Position): boolean
+        - canCastle(board: Board, to: Position): boolean
+    }
+
+    class Queen {
+        + Queen(color: String, position: Position)
+        + canMove(board: Board, to: Position): boolean
+    }
+
+    class Bishop {
+        + Bishop(color: String, position: Position)
+        + canMove(board: Board, to: Position): boolean
+    }
+
+    class Knight {
+        + Knight(color: String, position: Position)
+        + canMove(board: Board, to: Position): boolean
+        - isValidKnightMove(from: Position, to: Position): boolean
+    }
+
+    class Rook {
+        + Rook(color: String, position: Position)
+        + canMove(board: Board, to: Position): boolean
+    }
+
+    class Pawn {
+        + Pawn(color: String, position: Position)
+        + canMove(board: Board, to: Position): boolean
+        - isFirstMove(): boolean
+        - canEnPassant(board: Board, to: Position): boolean
+        - isValidPawnMove(board: Board, to: Position): boolean
+    }
+}
+
+' Package board
+package "board" {
+    class Board {
+        - squares: Piece[][]
+        - {static} final BOARD_SIZE: int = 8
+        + Board()
+        - initialize(): void
+        + getPiece(position: Position): Piece
+        + movePiece(from: Position, to: Position): boolean
+        + isValidPosition(position: Position): boolean
+        + isInCheck(color: String): boolean
+        + isCheckmate(color: String): boolean
+        + isStalemate(color: String): boolean
+        - canMoveWithoutCheck(from: Position, to: Position): boolean
+        + copyBoard(): Board
+        - createPieceCopy(original: Piece): Piece
+        - findKing(color: String): Position
+        + toString(): String
+    }
+    note right of Board
+        Central class managing the game state
+        and piece movements
+    end note
+}
+
+' Package game
+package "game" {
+    class Game {
+        - board: Board
+        - currentPlayer: String
+        - gameOver: boolean
+        - moveHistory: List<String>
+        - isInCheck: boolean
+        - {static} final WHITE: String = "white"
+        - {static} final BLACK: String = "black"
+        + Game()
+        - initializeGame(): void
+        + start(): void
+        - switchPlayer(): void
+        + isGameOver(): boolean
+        + getCurrentPlayer(): String
+        + getMoveHistory(): List<String>
+        - recordMove(from: Position, to: Position): void
+        + undoLastMove(): boolean
+        + getBoard(): Board
+    }
+}
+
+' Package gui
+package "gui" {
+    class ChessGUI {
+        - game: Game
+        - board: JPanel
+        - selectedPosition: Position
+        - squares: JButton[][]
+        + ChessGUI(game: Game)
+        - initializeBoard(): void
+        - createSquare(row: int, col: int): JButton
+        - updateBoard(): void
+        - handleClick(position: Position): void
+        - highlightLegalMoves(position: Position): void
+        - clearHighlights(): void
+        + displayGameOver(winner: String): void
+    }
+}
+
+' Relationships with detailed multiplicities and labels
+Piece <|-- King
+Piece <|-- Queen
+Piece <|-- Bishop
+Piece <|-- Knight
+Piece <|-- Rook
+Piece <|-- Pawn
+
+Game "1" *-- "1" Board : contains >
+Board "1" o-- "0..32" Piece : contains >
+Piece "1" *-- "1" Position : has >
+ChessGUI "1" -- "1" Game : displays >
+
+' Dependencies
+ChessGUI ..> Position : uses >
+Board ..> Position : uses >
+Game ..> Position : uses >
+
+@enduml
