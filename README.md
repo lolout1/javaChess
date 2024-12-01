@@ -1,12 +1,12 @@
 # Java Chess Game
 
 ## Team Information
-- **Team Name**: LiChessBot
+- **Team Name**: Untitled
 - **Team Members**: 
-  - lolout1
+  - Abheek
 - **Course**: CS 3354
-- **Semester**: Fall 2023
-- **Section**: [Your Section Number]
+- **Semester**: Fall 2045
+- **Section**: [003]
 
 ## Project Overview
 A fully functional GUI-based chess game implemented in Java, featuring complete chess rules implementation including move validation, piece capture, check and checkmate detection.
