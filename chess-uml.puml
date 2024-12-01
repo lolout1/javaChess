@@ -1,0 +1,96 @@
+@startuml Chess Game Class Diagram
+
+package main {
+    class Main {
+        + {static} main(args: String[]): void
+    }
+}
+
+package gui {
+    class ChessGUI {
+        - board: ChessBoard
+        - gameState: GameState
+        + ChessGUI()
+        + initializeBoard(): void
+        + updateBoard(): void
+        + handleMove(from: Position, to: Position): boolean
+    }
+}
+
+package board {
+    class ChessBoard {
+        - pieces: Piece[][]
+        + movePiece(from: Position, to: Position): boolean
+        + getPiece(pos: Position): Piece
+        + isValidMove(from: Position, to: Position): boolean
+    }
+}
+
+package game {
+    class GameState {
+        - currentPlayer: Player
+        - moveHistory: List<Move>
+        + isCheckmate(): boolean
+        + isCheck(): boolean
+        + switchPlayer(): void
+    }
+}
+
+package pieces {
+    abstract class Piece {
+        # position: Position
+        # color: Color
+        + {abstract} isValidMove(to: Position): boolean
+        + getValidMoves(): List<Position>
+    }
+    
+    class King extends Piece {
+        + isValidMove(to: Position): boolean
+    }
+    
+    class Queen extends Piece {
+        + isValidMove(to: Position): boolean
+    }
+    
+    class Rook extends Piece {
+        + isValidMove(to: Position): boolean
+    }
+    
+    class Bishop extends Piece {
+        + isValidMove(to: Position): boolean
+    }
+    
+    class Knight extends Piece {
+        + isValidMove(to: Position): boolean
+    }
+    
+    class Pawn extends Piece {
+        + isValidMove(to: Position): boolean
+    }
+}
+
+package utils {
+    class Position {
+        - x: int
+        - y: int
+        + getX(): int
+        + getY(): int
+    }
+    
+    class Move {
+        - from: Position
+        - to: Position
+        - piece: Piece
+        + getFrom(): Position
+        + getTo(): Position
+    }
+}
+
+ChessGUI --> ChessBoard
+ChessGUI --> GameState
+ChessBoard --> "64" Piece
+GameState --> "*" Move
+Piece --> Position
+Move --> Position
+
+@enduml

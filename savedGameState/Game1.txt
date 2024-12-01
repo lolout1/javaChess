@@ -1,0 +1,8 @@
+black
+Pawn: E2 → E4
+Pawn: E7 → E5
+Queen: D1 → F3
+Bishop: F8 → D6
+Queen: F3 → F7
+Knight: G8 → F6
+Queen: F7 → F8
