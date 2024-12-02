@@ -31,7 +31,7 @@ A fully functional GUI-based chess game implemented in Java, featuring complete 
 - [x] Save/Load game functionality - Menu Bar with Game Controls
 - [x] Move history
 - [x] Undo moves and move logger
-- [x]Settings Window for Customization including user customizable board size and board color
+- [x] Settings Window for Customization including user customizable board size and board color
 - [x] Game History Panel with Undo Button
 
 
