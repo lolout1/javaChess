@@ -5,7 +5,7 @@
 - **Team Members**: 
   - Abheek
 - **Course**: CS 3354
-- **Semester**: Fall 2045
+- **Semester**: Fall 2024
 - **Section**: [003]
 
 ## Project Overview
@@ -28,11 +28,12 @@ A fully functional GUI-based chess game implemented in Java, featuring complete 
 - [x] Checkmate detection
 - [x] Turn-based gameplay
 - [x] Game state visualization
-- [x] Save/Load game functionality
+- [x] Save/Load game functionality - Menu Bar with Game Controls
 - [x] Move history
 - [x] Undo moves and move logger
-- [x] User customizable board size and board color. 
-<!-- Add or modify features as implemented -->
+- [x] Settings Window for Customization including user customizable board size and board color
+- [x] Game History Panel with Undo Button
+
 
 ## How to Run
 1. **Prerequisites**:
