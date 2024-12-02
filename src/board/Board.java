@@ -6,6 +6,9 @@ import utils.Position;
 /**
  * Represents the chess board and manages game state.
  * Handles piece movement, check/checkmate detection, and board state validation.
+ * Maintains an 8x8 grid of pieces and provides methods for game mechanics.
+ * 
+ * @author Abheek Pradhan
  */
 public class Board {
     private Piece[][] squares;

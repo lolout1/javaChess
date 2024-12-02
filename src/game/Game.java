@@ -12,6 +12,9 @@ import java.io.*;
  * Console-based chess game implementation.
  * Handles game flow, move validation, and player interaction.
  * Includes comprehensive chess rules enforcement and game state management.
+ * Supports save/load functionality and maintains move history.
+ * 
+ * @author Abheek Pradhan
  */
 public class Game {
     private Board board;

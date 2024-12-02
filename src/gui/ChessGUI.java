@@ -14,11 +14,15 @@ import javax.imageio.ImageIO;
 
 /**
  * ChessGUI class provides the graphical interface for the chess game.
- * Includes features for:
+ * Implements a feature-rich chess interface with:
  * - Visual board representation and piece movement
  * - Move history and captured pieces tracking
  * - Check/Checkmate detection and notification
  * - Game state management (save/load/undo)
+ * - Customizable board appearance
+ * - Interactive piece movement with legal move highlighting
+ * 
+ * @author Abheek Pradhan
  */
 public class ChessGUI extends JFrame {
     // Constants
